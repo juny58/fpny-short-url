@@ -1,8 +1,7 @@
 const http = require('http');
 const urlMap = require('./url-map.json')
 
-const hostname = 'localhost';
-const port = 3100;
+const port = process.env.PORT || 3100;
 
 const server = http.createServer((req, res) => {
     const url = urlMap[req.url] || urlMap['/']
@@ -12,6 +11,6 @@ const server = http.createServer((req, res) => {
     res.end();
 });
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}`);
+server.listen(port, () => {
+    console.log(`Server running at ${port}`);
 });
